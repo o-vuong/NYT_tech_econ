@@ -25,7 +25,7 @@ class NewsRoom::CLI
             input = gets.strip.downcase
             if input.to_i > 0
                 the_news = @news[input.to_i-1]
-               puts "#{the_news.description}"
+               puts "#{the_news.description.split}"
                 elsif input == "list"
                     list_news
                 else 
