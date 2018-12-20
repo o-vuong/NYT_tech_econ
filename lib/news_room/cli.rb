@@ -23,9 +23,9 @@ class NewsRoom::CLI
         while input != "exit"
             puts "Input number of which article you'd like to read, type list to see articles again or type exit to exit:"
             input = gets.strip.downcase
-            if input.to_i > 0
+            if (1..2).include?(input.to_i)
                 the_news = @news[input.to_i-1]
-               puts "#{the_news.description.split}"
+               puts "#{the_news.description}"
                 elsif input == "list"
                     list_news
                 else 

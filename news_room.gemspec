@@ -9,8 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Oscar Vuong"]
   spec.email         = ["oscarvuong@gmail.com"]
 
-  spec.summary       = %q{Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{ Write a longer description or delete this line.}
+  spec.summary       = %q{Read the brief articles about the latest in technology and economy from The New York times.}
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -39,6 +38,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "pry"
-  spec.add_development_dependency "launchy"
+  spec.add_development_dependency "executables"
   spec.add_dependency "nokogiri"
 end

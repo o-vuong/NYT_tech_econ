@@ -1,5 +1,8 @@
 # NewsRoom
-This little Gem pulls title, author, link, and descriptions of the latest articles from The New York Times
+
+Read tbe latest about technology and the economy from The New York Times
+
+
 
 ## Installation
 

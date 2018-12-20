@@ -1,7 +1,7 @@
 require "pry"
 require "nokogiri"
 require "open-uri"
-require "launchy"
+require "executables"
 
 require_relative "./news_room/version"
 require_relative "./news_room/latest"
