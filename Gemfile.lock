@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    news_room (0.1.3)
+    news_room (0.1.5)
       nokogiri
 
 GEM
