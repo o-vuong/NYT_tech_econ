@@ -10,7 +10,7 @@ class NewsRoom::CLI
         puts "Today's news:"
         @news = NewsRoom::News.today
         @news.each.with_index(1) do |news, i| 
-        puts "#{i}.  #{news.article} - #{news.author} - #{news.link} - #{news.type}"        
+        puts "#{i}.  #{news.article} - #{news.author} - #{news.base_url}#{news.link} - #{news.type}"        
         end
         
     end
