@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Simply type 1 or 2 when prompted.  When you want to read more of the article type 'open article' if you want to go into the section it belongs to type 'open section'. Using those commands will re-direct you to your default web browser.
 
 ## Development
 

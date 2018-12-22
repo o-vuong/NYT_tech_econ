@@ -10,7 +10,8 @@ class NewsRoom::CLI
         puts "Today's news:"
         @news = NewsRoom::News.today
         @news.each.with_index(1) do |news, i| 
-        puts "#{i}.  #{news.article} - #{news.author} - #{news.base_url}#{news.link} - #{news.type}"        
+        puts "#{i}.  #{news.article} - #{news.author} - #{news.base_url}#{news.link} - #{news.type}"     
+        puts "Input number of which article you'd like to read, type list to see articles again or type exit to exit:"   
         end
         
     end
@@ -21,12 +22,13 @@ class NewsRoom::CLI
     def menu
         input = nil
         while input != "exit"
-            puts "Input number of which article you'd like to read, type list to see articles again or type exit to exit:"
+           
             input = gets.strip.downcase
             if (1..2).include?(input.to_i)
                 the_news = @news[input.to_i-1]
                puts "#{the_news.description}"
                puts "---------If you want to read the full article type open article to open section to view more news in #{the_news.type}---------"
+               puts "-------------------To view articles again type list. If you are finished type exit to exit program----------------------"
                elsif input == "open section"
                     puts "opening browser..."
                     Launchy.open("#{the_news.section}")
