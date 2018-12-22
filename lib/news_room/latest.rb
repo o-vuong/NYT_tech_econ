@@ -1,5 +1,5 @@
 class NewsRoom::News
-    attr_accessor :article, :author, :link, :type, :description, :base_url
+    attr_accessor :article, :author, :link, :type, :description, :base_url, :section
     
     def self.today
         self.scrape_news
@@ -29,21 +29,39 @@ class NewsRoom::News
         news.link = doc.search("div.css-4jyr1y a").first.attr("href") 
         news.type = doc.at_css("h1.css-1qq4zod.e1bbdwbz0").text
         news.description = doc.at_css("div.css-4jyr1y p.css-1echdzn.e1xfvim31").text
+        news.section = "https://www.nytimes.com/section/technology"
         news
     end
 
     def self.scrape_NYT_econ
-        
-        doc = Nokogiri::HTML(open("https://www.nytimes.com/section/business/economy"))
-
-        news = self.new
-        news.article = doc.at_css("h2.css-1dq8tca.e1xfvim30").text
-        news.author = doc.at_css("p.css-1xonkmu").text
+        econ = Nokogiri::HTML(open("https://www.nytimes.com/section/business/economy"))
+        news = self.new  
+        news.type = econ.at_css("h1.css-1qq4zod.e1bbdwbz0").text
         news.base_url = "https://www.nytimes.com"
-        news.link = doc.search("div.css-4jyr1y a").first.attr("href")
-        news.type = doc.at_css("h1.css-1qq4zod.e1bbdwbz0").text
-        news.description = doc.at_css("div.css-4jyr1y p.css-1echdzn.e1xfvim31").text
+
+
+        econ.css("li.css-ye6x8s").each do | post |
+                
+            news.article = post.css("h2.css-1dq8tca.e1xfvim30").text
+            news.author = post.css("p.css-1xonkmu").text
+            news.link = post.css("div.css-4jyr1y a").attribute("href").value
+            news.description = post.css("p.css-1echdzn.e1xfvim31").text
+            news.section = "https://www.nytimes.com/section/business/economy"
+           
+        end
         news
+
+    
+        # doc = Nokogiri::HTML(open("https://www.nytimes.com/section/business/economy"))
+
+        # news = self.new
+        # news.article = doc.at_css("h2.css-1dq8tca.e1xfvim30").text
+        # news.author = doc.at_css("p.css-1xonkmu").text
+        # news.base_url = "https://www.nytimes.com"
+        # news.link = doc.search("div.css-4jyr1y a").first.attr("href")
+        # news.type = doc.at_css("h1.css-1qq4zod.e1bbdwbz0").text
+        # news.description = doc.at_css("div.css-4jyr1y p.css-1echdzn.e1xfvim31").text
+        # news
     end
 
 end
