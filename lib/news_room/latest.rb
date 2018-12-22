@@ -27,13 +27,9 @@ class NewsRoom::News
         news.author = doc.at_css("p.css-1xonkmu").text
         news.base_url = "https://www.nytimes.com"
         news.link = doc.search("div.css-4jyr1y a").first.attr("href") 
-        news.type = "Technology"
+        news.type = doc.at_css("h1.css-1qq4zod.e1bbdwbz0").text
         news.description = doc.at_css("div.css-4jyr1y p.css-1echdzn.e1xfvim31").text
-        
-      
         news
-
-        
     end
 
     def self.scrape_NYT_econ
@@ -44,8 +40,8 @@ class NewsRoom::News
         news.article = doc.at_css("h2.css-1dq8tca.e1xfvim30").text
         news.author = doc.at_css("p.css-1xonkmu").text
         news.base_url = "https://www.nytimes.com"
-        news.link = doc.at_css("div.css-4jyr1y a").first.attr("href")
-        news.type = "Economics"
+        news.link = doc.search("div.css-4jyr1y a").first.attr("href")
+        news.type = doc.at_css("h1.css-1qq4zod.e1bbdwbz0").text
         news.description = doc.at_css("div.css-4jyr1y p.css-1echdzn.e1xfvim31").text
         news
     end
