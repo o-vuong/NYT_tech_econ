@@ -31,9 +31,11 @@ class NewsRoom::CLI
                puts "-------------------To view articles again type list. If you are finished type exit to exit program----------------------"
                elsif input == "open section"
                     puts "opening browser..."
+                    puts "-------------------To view articles again type list. If you are finished type exit to exit program----------------------"
                     Launchy.open("#{the_news.section}")
                 elsif input == "open article"
                     puts "opening browser..."
+                    puts "-------------------To view articles again type list. If you are finished type exit to exit program----------------------"
                     Launchy.open("#{the_news.base_url}#{the_news.link}")
 
                 elsif input == "list"
