@@ -11,9 +11,9 @@ class NewsRoom::CLI
         @news = NewsRoom::News.today
         @news.each.with_index(1) do |news, i| 
         puts "#{i}.  #{news.article} - #{news.author} - #{news.base_url}#{news.link} - #{news.type}"     
-        puts "Input number of which article you'd like to read, type list to see articles again or type exit to exit:"   
+          
         end
-        
+        puts "Input number of which article you'd like to read, type list to see articles again or type exit to exit:"
     end
         
         
