@@ -11,6 +11,7 @@ class NewsRoom::CLI
         @news = NewsRoom::News
         @news.today
         @news.get_articles
+        @news.all
         puts "Input number of which article you'd like to read, type list to see articles again or type exit to exit:"
         
     end
@@ -44,7 +45,7 @@ class NewsRoom::CLI
             end
         end
     end
-
+binding.pry
 
     def goodbye
         puts "Exiting..."

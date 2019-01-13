@@ -18,25 +18,34 @@ class NewsRoom::News
 
     def self.today
         self.scrape_news
+        
+    end
+
+
+    def self.all
+        @@all
+        
     end
 
     def self.scrape_news
-        self.scrape_NYT_tech
-        self.scrape_NYT_econ
+        @@all << self.scrape_NYT_tech
+        @@all << self.scrape_NYT_econ
     end
+
 
     def self.get_articles
         @@all.each.with_index(1) do |news, i|
-        puts " #{i}.#{news.article} - #{news.author} - #{news.base_url}#{news.link} - #{news.type}"   
+        puts " #{i}.#{news.article} - #{news.author} - #{news.base_url}#{news.link} - #{news.type}"  
+       
         end  
 
     end
 
     def self.description
-        @@all.each.with_index(1) do |news, i|
-         
-            end 
+        @@all.select{|news| news.description}
+        
     end
+ 
 
 
     def self.scrape_NYT_tech
@@ -52,7 +61,7 @@ class NewsRoom::News
         news.type = doc.at_css("h1.css-1qq4zod.e1bbdwbz0").text
         news.description = doc.at_css("div.css-4jyr1y p.css-1echdzn.e1xfvim31").text
         news.section = "https://www.nytimes.com/section/technology"
-        news.add_to_all
+        news
 
     end
 
@@ -67,8 +76,8 @@ class NewsRoom::News
         news.link = doc.search("div.css-4jyr1y a").first.attr("href")
         news.type = doc.at_css("h1.css-1qq4zod.e1bbdwbz0").text
         news.description = doc.at_css("div.css-4jyr1y p.css-1echdzn.e1xfvim31").text
-        news.add_to_all
+        news
     end
-    binding.pry
+binding.pry
 end
 
