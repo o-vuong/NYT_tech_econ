@@ -41,10 +41,7 @@ class NewsRoom::News
 
     end
 
-    def self.description
-        @@all.select{|news| news.description}
-        
-    end
+
  
 
 
@@ -78,6 +75,6 @@ class NewsRoom::News
         news.description = doc.at_css("div.css-4jyr1y p.css-1echdzn.e1xfvim31").text
         news
     end
-binding.pry
+
 end
 

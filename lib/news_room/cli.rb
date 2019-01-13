@@ -11,7 +11,7 @@ class NewsRoom::CLI
         @news = NewsRoom::News
         @news.today
         @news.get_articles
-        @news.all
+
         puts "Input number of which article you'd like to read, type list to see articles again or type exit to exit:"
         
     end
@@ -21,22 +21,23 @@ class NewsRoom::CLI
     
     def menu
         input = nil
+        # binding.pry
         while input != "exit"
            
-            input = gets.strip.downcase
-            if (1..2).include?(input.to_i)
-               the_news = @news=[input.to_i-1]
-               puts "#{the_news.description}"
-               puts "---------If you want to read the full article type open article to open section to view more news in #{the_news.type}---------"
+            input = (gets.strip.downcase.to_i - 1)
+            if (0..1).include?(input)
+                
+               puts "#{@news.all[input].description}"
+               puts "---------If you want to read the full article type open article to open section to view more news in #{@news.all[input].type}---------"
                puts "-------------------To view articles again type list. If you are finished type exit to exit program----------------------"
                elsif input == "open section"
                     puts "opening browser..."
                     puts "-------------------To view articles again type list. If you are finished type exit to exit program----------------------"
-                    Launchy.open("#{the_news.section}")
+                    Launchy.open("#{@news.all[input].section}")
                 elsif input == "open article"
                     puts "opening browser..."
                     puts "-------------------To view articles again type list. If you are finished type exit to exit program----------------------"
-                    Launchy.open("#{the_news.base_url}#{the_news.link}")
+                    Launchy.open("#{@news.all[input].base_url}#{@news.all[input].link}")
 
                 elsif input == "list"
                     list_news
@@ -45,7 +46,7 @@ class NewsRoom::CLI
             end
         end
     end
-binding.pry
+
 
     def goodbye
         puts "Exiting..."
