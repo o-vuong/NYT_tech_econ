@@ -9,6 +9,7 @@ class NewsRoom::News
         @description = description
         @base_url = base_url
         @section = section
+    
         
     end
 
@@ -28,17 +29,18 @@ class NewsRoom::News
     end
 
     def self.scrape_news
-        @@all << self.scrape_NYT_tech
-        @@all << self.scrape_NYT_econ
+        
+        self.scrape_NYT_tech
+        self.scrape_NYT_econ
     end
 
 
     def self.get_articles
-        @@all.each.with_index(1) do |news, i|
+        @@all.to_set.each.with_index(1) do |news, i|
         puts " #{i}.#{news.article} - #{news.author} - #{news.base_url}#{news.link} - #{news.type}"  
        
         end  
-
+       
     end
 
 
@@ -58,7 +60,7 @@ class NewsRoom::News
         news.type = doc.at_css("h1.css-1qq4zod.e1bbdwbz0").text
         news.description = doc.at_css("div.css-4jyr1y p.css-1echdzn.e1xfvim31").text
         news.section = "https://www.nytimes.com/section/technology"
-        news
+        news.add_to_all
 
     end
 
@@ -73,8 +75,9 @@ class NewsRoom::News
         news.link = doc.search("div.css-4jyr1y a").first.attr("href")
         news.type = doc.at_css("h1.css-1qq4zod.e1bbdwbz0").text
         news.description = doc.at_css("div.css-4jyr1y p.css-1echdzn.e1xfvim31").text
-        news
+        news.add_to_all
     end
+# binding.pry
 
 end
 
